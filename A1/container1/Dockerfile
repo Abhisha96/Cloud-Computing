@@ -1,9 +1,3 @@
-# Use an appropriate base image (e.g., Ubuntu)
-FROM ubuntu:20.04
-
-# Update package lists and install curl
-RUN apt-get update && apt-get install -y curl
-
 FROM python:3.8-slim-buster
 
 WORKDIR /app
