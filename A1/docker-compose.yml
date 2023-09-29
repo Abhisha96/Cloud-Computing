@@ -1,0 +1,28 @@
+services:
+  container1:
+    build: ./container1
+    image: container1
+    container_name: container1
+    ports:
+      - "6000:6000"
+    networks:
+      - custom-network
+    volumes:
+      - ./:/etc/data
+    depends_on:
+      - container2
+  
+  container2:
+    build: ./container2  # Assuming this should be a different build context
+    image: container2
+    container_name: container2
+    networks:
+      - custom-network
+    volumes:
+      - ./:/etc/data
+
+networks:
+  custom-network:
+    name: app-network
+    driver: bridge
+

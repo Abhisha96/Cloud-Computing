@@ -1,0 +1,19 @@
+# Use an appropriate base image (e.g., Ubuntu)
+FROM ubuntu:20.04
+
+# Update package lists and install curl
+RUN apt-get update && apt-get install -y curl
+
+FROM python:3.8-slim-buster
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 6000
+
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=6000"]
