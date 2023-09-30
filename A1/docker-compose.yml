@@ -1,7 +1,7 @@
 services:
   container1:
     build: ./container1
-    image: container1
+    image: abhisha1thaker/container1
     container_name: container1
     ports:
       - "6000:6000"
@@ -14,7 +14,7 @@ services:
   
   container2:
     build: ./container2 
-    image: container2
+    image: abhisha1thaker/container2
     container_name: container2
     networks:
       - custom-network
