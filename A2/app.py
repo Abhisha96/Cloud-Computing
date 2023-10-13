@@ -23,10 +23,9 @@ stored_data = ''
 def start():
     data = request.get_json()
     
-    # Record the IP (you can access it as request.remote_addr)
+    # Record the IP
     ip = request.remote_addr
     
-    # Send a POST request to the other app's /store-data    
     return jsonify({"banner": "B00937694", "status_code":200})
 
 @app.route('/store-data', methods=['POST'])
