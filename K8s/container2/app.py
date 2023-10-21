@@ -61,7 +61,7 @@ def temperature_info():
         
     except Exception as e:
         logging.error(f"Internal server error: {str(e)}")
-        return jsonify({"file": None, "error": str(e)}), 500
+        return jsonify({"file": file_name, "error": "Input file not in CSV Format."})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6001)
