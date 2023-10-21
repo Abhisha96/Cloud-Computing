@@ -132,7 +132,7 @@ def temperature_info_c1():
         return response.json()
     except Exception as e:
         logging.error(f"Internal server error: {str(e)}")
-        return {"file": request_data.get('file'), "error": "Not able to communicate with container2"}
+        return jsonify({"file": file_name, "error": "Input file not in CSV Format."})
     
 if __name__ == '__main__':
     # Start the Flask app
