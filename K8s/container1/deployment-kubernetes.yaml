@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8-container1final
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8-container-multi_1
+  template:
+    metadata:
+      labels:
+        app: k8-container-multi_1
+    spec:
+      containers:
+        - name: container1
+          image: us-east1-docker.pkg.dev/kubernetes-402400/my-containerimage-repo/container1:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 6000
+          volumeMounts:
+          - mountPath: /root/abhisha_PV_dir
+            name: my-pv-storage
+      volumes:
+          - name: my-pv-storage
+            persistentVolumeClaim:
+              claimName: my-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8-container1final
+spec:
+  type: LoadBalancer
+  selector:
+    app: k8-container-multi_1
+  ports:
+    - port: 6000
+      targetPort: 6000

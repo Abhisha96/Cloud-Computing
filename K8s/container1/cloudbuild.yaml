@@ -1,0 +1,38 @@
+steps:
+  # Docker Build 1
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+            'build',
+            '-t',
+            'us-east1-docker.pkg.dev/kubernetes-402400/my-containerimage-repo/container1:${SHORT_SHA}',
+            '-t',
+            'us-east1-docker.pkg.dev/kubernetes-402400/my-containerimage-repo/container1:latest',
+            '--cache-from',
+            'us-east1-docker.pkg.dev/kubernetes-402400/my-containerimage-repo/container1:latest',
+            '.'
+          ]
+  # Docker push to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push',  'us-east1-docker.pkg.dev/kubernetes-402400/my-containerimage-repo/container1:${SHORT_SHA}']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: Deploy
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+          PROJECT=$$(gcloud config get-value core/project)          
+          gke-gcloud-auth-plugin --version
+          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+          gcloud container clusters get-credentials my-terraform-cluster-1 --region us-central1 --project kubernetes-402400 
+          kubectl apply -f pvc.yaml
+          kubectl apply -f deployment-kubernetes.yaml
+
+# Store images in Google Artifact Registry
+images:
+  - us-east1-docker.pkg.dev/kubernetes-402400/my-containerimage-repo/container1:${SHORT_SHA}
+  - us-east1-docker.pkg.dev/kubernetes-402400/my-containerimage-repo/container1:latest
+
+
+
+
