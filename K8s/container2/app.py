@@ -33,51 +33,6 @@ def load_and_parse_csv(file_name):
         logging.error(f"Error loading CSV file: {str(e)}")
         return None
 
-@app.route('/get-temp', methods=['POST'])
-def get_temperature():
-    data = request.get_json()
-    if 'file' in data and 'name' in data:
-        file_name = data['file']
-        name = data['name']
-        try:
-            latest_temp = {}
-            file_path = os.path.join(PERSISTENT_VOLUME_PATH, file_name)
-            if os.path.exists(file_path):
-                temperature = get_latest_temperature(file_name, name, latest_temp)
-                if temperature is not None:
-                    return jsonify({
-                        "file": file_name,
-                        "error": "Input file not in CSV format."
-                    }), 400
-                else:
-                    return jsonify({
-                        "file": file_name,
-                        "temperature": temperature
-                    }), 200
-            else:
-                return jsonify({
-                    "file": file_name,
-                    "error": "File not found."
-                }), 404
-        except Exception as e:
-            return jsonify({
-                "file": None,
-                "error": "Invalid JSON input."
-            }), 400
-
- 
-def get_latest_temperature(file_name, name, latest_temp):
-    #latest_temperature = 0
-    try:
-        with open(f'/somya_PV_dir/{file_name}', mode='r') as file:
-            csv_reader = csv.DictReader(file, delimiter=',')
-            for row in csv_reader:
-                if row[0] == name:
-                    latest_temp['temperature'] = int(row[3])
-            return latest_temp
-    except Exception as e:
-        return None
-""" 
 @app.route('/temperature-info', methods=['POST'])
 def temperature_info():
     try:
@@ -106,7 +61,7 @@ def temperature_info():
         
     except Exception as e:
         logging.error(f"Internal server error: {str(e)}")
-        return jsonify({"file": None, "error": str(e)}), 500 """
+        return jsonify({"file": None, "error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6001)
