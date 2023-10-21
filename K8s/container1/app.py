@@ -111,19 +111,7 @@ def user_info():
    #     return response.json()
     #except Exception as e:
      #   return {"file": request_data.get('file'), "error": "Not able to communicate with container2"}
-
-@app.route('/get-temperature', methods=['POST'])
-def get_user_info():
-    data = request.get_json()
-    response = forward_to_container2(data)
-    return jsonify(response)    
-
-def forward_to_container2(data):
-    #try:
-    response = requests.post('http://k8-container2final:6001/get-temp', json=data)
-    return response.json()
-
- """   
+    
 @app.route('/get-temperature', methods=['POST'])
 def temperature_info_c1():
     try:
@@ -144,7 +132,7 @@ def temperature_info_c1():
         return response.json()
     except Exception as e:
         logging.error(f"Internal server error: {str(e)}")
-        return {"file": request_data.get('file'), "error": "Not able to communicate with container2"} """
+        return {"file": request_data.get('file'), "error": "Not able to communicate with container2"}
     
 if __name__ == '__main__':
     # Start the Flask app
