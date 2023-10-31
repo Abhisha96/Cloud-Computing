@@ -8,7 +8,7 @@ app = Flask(__name__)
 mysql_host = "my-redis.c5yytq2j5p0n.us-east-1.rds.amazonaws.com"
 mysql_user = "admin"
 mysql_password = "adminadmin"
-mysql_db = "your_mysql_db_name"
+mysql_db = "my-redis"
 
 # Redis Connection Configuration
 redis_host = "54.243.7.50"
