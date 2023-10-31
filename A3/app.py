@@ -5,9 +5,9 @@ import redis  # For Redis
 app = Flask(__name__)
 
 # MySQL Connection Configuration
-mysql_host = "your_mysql_host"
-mysql_user = "your_mysql_username"
-mysql_password = "your_mysql_password"
+mysql_host = "my-redis.c5yytq2j5p0n.us-east-1.rds.amazonaws.com"
+mysql_user = "admin"
+mysql_password = "adminadmin"
 mysql_db = "your_mysql_db_name"
 
 # Redis Connection Configuration
@@ -75,4 +75,4 @@ def list_products():
         return str(e), 500  # Modify error handling as needed
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)  # Modify host and port as needed
+    app.run(host='0.0.0.0', port=6000)  # Modify host and port as needed
