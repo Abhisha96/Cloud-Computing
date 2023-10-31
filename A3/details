@@ -1,0 +1,10 @@
+{
+ "banner": "B00937694",
+ "ip": "174.129.77.86",
+ "ec2_instance_id": "i-0b916651a09da8c34",
+ "redis_host": "54.243.7.50",
+ "rds_instance_id": "my-redis",
+ "aws_access_key_id": "ASIA4EC2NDI3NCVC5Y4L",
+ "aws_secret_access_key": "kYAD4PICVx2LFOSaYn6cUJ/EJlpl5QtcA+7vh6ou",
+ "aws_session_token_id": "FwoGZXIvYXdzEMr//////////wEaDLgKgiPmmCH9XtT+EyK/AcUGlTVbA7lvdgdX1tcKnE36Xa/9pbpwsbkepHrotcmfuLZOMpEAPDj9386XjsgIMnDUZRRJHZbXd637HNmlHpUmetesvwVJ8ZMQCTMsGnHlpGAunGtzaCrxNRUKLWdBzwjY8+d41LqHTVU9iqiYRUAT7TcT/lKlyWymWX0Qb9B13GBFgYZWm7sHMpdftexana4fB07yzTR4yrTRN/y9IMMXwqbOwK6Gb1EX5BDi6Tqi9jr7XW+LzgsKU9CKjdxsKJ+RgaoGMi1F7Ot/n1l5pWaL1XYvUzKcMO4iwqQ8/QSV6Ky/Lt8hGBpYm07VdDFSpJlDads="
+} 
